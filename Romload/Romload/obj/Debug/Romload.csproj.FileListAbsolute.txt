@@ -1,0 +1,8 @@
+C:\Users\Henry\Desktop\Code\Romload\Romload\bin\Debug\Romload.exe.config
+C:\Users\Henry\Desktop\Code\Romload\Romload\bin\Debug\Romload.exe
+C:\Users\Henry\Desktop\Code\Romload\Romload\bin\Debug\Romload.pdb
+C:\Users\Henry\Desktop\Code\Romload\Romload\obj\Debug\Romload.csproj.AssemblyReference.cache
+C:\Users\Henry\Desktop\Code\Romload\Romload\obj\Debug\Romload.csproj.SuggestedBindingRedirects.cache
+C:\Users\Henry\Desktop\Code\Romload\Romload\obj\Debug\Romload.csproj.CoreCompileInputs.cache
+C:\Users\Henry\Desktop\Code\Romload\Romload\obj\Debug\Romload.exe
+C:\Users\Henry\Desktop\Code\Romload\Romload\obj\Debug\Romload.pdb

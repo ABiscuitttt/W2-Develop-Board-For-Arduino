@@ -1,0 +1,8 @@
+C:\Users\Henry\Desktop\Code\Romload\Test\bin\Debug\Test.exe.config
+C:\Users\Henry\Desktop\Code\Romload\Test\bin\Debug\Test.exe
+C:\Users\Henry\Desktop\Code\Romload\Test\bin\Debug\Test.pdb
+C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.csproj.AssemblyReference.cache
+C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.csproj.SuggestedBindingRedirects.cache
+C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.exe
+C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.pdb
