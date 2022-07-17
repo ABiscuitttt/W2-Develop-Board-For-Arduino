@@ -1,0 +1,63 @@
+#encode:UTF-8
+#In this file, the patterns and the ways to use cmd are defined
+
+name=W2 Develop Board
+version=1.0.0
+
+#Path Arguments For Compile
+compiler.path={runtime.tools.mips-compiler.path}/bin/
+include.path={runtime.platform.path}/src/
+preload.path={runtime.platform.path}/src/preload/
+
+#Flags During Compile
+compiler.c.flags=-EL -msoft-float -march=mips1 -std=gnu99 -G 0 -c
+compiler.c.Arduinoinclude=-I {include.path}
+
+compiler.cpp.flags=-EL -msoft-float -march=mips1 -G 0 -c
+compiler.cpp.Arduinoinclude=-I {include.path}
+
+compiler.S.flags=-EL -msoft-float -o
+
+compiler.ar.flags=rcs
+
+##################################################
+#——————————Compile Patterns——————————#
+##################################################
+##Compile C Files
+recipe.c.o.pattern={compiler.path}mips-mti-elf-gcc {compiler.c.flags} {compiler.c.Arduinoinclude} {includes} -o {object_file} {source_file}
+
+##Compile CPP Files
+recipe.cpp.o.pattern={compiler.path}mips-mti-elf-g++ {compiler.cpp.flags} {compiler.cpp.Arduinoinclude} {includes} -o {object_file} {source_file}
+
+##Compile S FIles
+recipe.S.o.pattern={compiler.path}mips-mti-elf-as {compiler.S.flags} {object_file} {source_file}
+
+##Link Object Files
+recipe.c.combine.pattern={compiler.path}mips-mti-elf-ld -EL -eentry -s -N -Ttext 10000000 -Tdata 01000010 -M -o {build.path}/{build.project_name}.ld "{preload.path}entry4romload.o" "{preload.path}io.o" "{preload.path}isr.o" "{preload.path}interrupt.o" {object_files}
+
+recipe.hooks.linking.postlink.1.pattern={runtime.platform.path}/flashtool/flashconvert.exe -l {build.path}/{build.project_name}.ld
+
+##Generate Archive file
+recipe.ar.pattern={compiler.path}mips-mti-elf-ar {compiler.ar.flags} -o {archive_file_path} {object_file}
+
+##Calculate The Size Of Binary File
+recipe.size.pattern={compiler.path}mips-mti-elf-size -A {build.path}/{build.project_name}.ld
+
+recipe.size.regex=^(?:\.text|\.eh_frame)\s+([0-9]+).*
+recipe.size.regex.data=^(?:\.MIPS.abiflags)\s+([0-9]+).*
+
+##Output The Binary File To The Project Folder
+
+recipe.output.tmp_file={build.project_name}.ld
+recipe.output.save_file={build.project_name}.saved.ld
+
+##################################################
+#——————————Upload Patterns——————————#
+##################################################
+tools.Uploader.path.windows={runtime.platform.path}
+tools.Uploader.cmd.windows=/upload/Uploader
+
+tools.Uploader.upload.params.verbose= -v
+tools.Uploader.upload.params.quiet= 
+
+tools.Uploader.upload.pattern={runtime.platform.path}/upload/Uploader "{build.path}/{build.project_name}.ld.bin"
