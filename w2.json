@@ -1,0 +1,51 @@
+{
+  "packages": [
+    {
+      "name": "W2",
+      "maintainer": "Camel Micro",
+      "websiteURL": "http://camelmicro.com/",
+      "email": "support@camelmicro.com",
+      "help": {
+        "online": "http://camelmicro.com/"
+      },
+      "platforms": [
+        {
+          "name": "W2 Develop Board",
+          "architecture": "MIPS",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "help": {
+            "online": "http://camelmicro.com/"
+          },
+          "url": "http://121.37.143.186:8080/w2-1.0.0.zip",
+          "archiveFileName": "W2-1.0.0.zip",
+          "size": "98832",
+          "boards": [
+            { "name": "W2 Develop Board" }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "W2",
+              "name": "mips-compiler",
+              "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2"
+            }
+          ]
+        }
+      ],
+
+      "tools": [
+        {
+          "name": "mips-compiler",
+          "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2",
+          "systems": [
+            {
+              "host": "i686-mingw32",
+              "archiveFileName": "mips-compiler.zip",
+              "url": "http://121.37.143.186:8080/mips-compiler.zip"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
