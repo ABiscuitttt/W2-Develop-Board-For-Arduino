@@ -97,6 +97,7 @@ namespace Uploader
             Console.ForegroundColor = ConsoleColor.White;
             serialPort.Close();
             serialPort.Dispose();
+            Console.ReadKey();
         }
         static void MemoryWriteWord(SerialPort serialPort,string address,string value)
         {
