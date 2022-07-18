@@ -6,3 +6,11 @@ C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.csproj.SuggestedBindingR
 C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
 C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.exe
 C:\Users\Henry\Desktop\Code\Romload\Test\obj\Debug\Test.pdb
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\bin\Debug\Test.exe.config
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\bin\Debug\Test.exe
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\bin\Debug\Test.pdb
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\obj\Debug\Test.csproj.AssemblyReference.cache
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\obj\Debug\Test.csproj.SuggestedBindingRedirects.cache
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\obj\Debug\Test.exe
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Test\obj\Debug\Test.pdb

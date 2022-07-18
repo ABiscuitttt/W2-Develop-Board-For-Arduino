@@ -34,16 +34,12 @@ namespace Uploader
             {
                 vis=false;
             }
-            SerialPort serialPort = new SerialPort
-            {
-                BaudRate = 9600,
-                DataBits = 8,
-                Parity = Parity.None,
-                StopBits = StopBits.One,
-                PortName = "COM3",
-                ReadBufferSize = 8192
-            };
+
+
+
+            SerialPort serialPort = SearchPort();
             serialPort.Open();
+            serialPort.ReadExisting();
 
             #region 等待重置开发板
             if (!(args.Contains("--noreset")))
@@ -63,7 +59,6 @@ namespace Uploader
 
             }
             #endregion
-
             serialPort.Write("\n");
             Console.WriteLine("Wait Response From the Board");
             if(DelayForResponse(serialPort, "> v1.11 > ", 5, vis))
@@ -142,6 +137,34 @@ namespace Uploader
                     return false;
                 }
             }
+        }
+        public static SerialPort SearchPort()
+        {
+            SerialPort serialPort = new SerialPort
+            {
+                BaudRate = 9600,
+                DataBits = 8,
+                Parity = Parity.None,
+                StopBits = StopBits.One,
+                ReadBufferSize = 8192
+            };
+            foreach (var item in SerialPort.GetPortNames())
+            {
+                serialPort.PortName=item;
+                try
+                {
+                    serialPort.Open();
+                    serialPort.Write("\n");
+                }
+                finally{}
+                if(DelayForResponse(serialPort, "> v1.11 > ", 1, false))
+                {
+                    serialPort.Close();
+                    return serialPort;
+                }
+            }
+            serialPort.Close();
+            return null;
         }
     }
 }

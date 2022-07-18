@@ -11,7 +11,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            foreach (var item in args)
+            foreach (var item in SerialPort.GetPortNames())
             {
                 Console.WriteLine(item);
             }
