@@ -19,7 +19,7 @@
           },
           "url": "http://121.37.143.186:8080/w2-1.0.0.zip",
           "archiveFileName": "W2-1.0.0.zip",
-          "size": "98832",
+          "size": "98388",
           "boards": [
             { "name": "W2 Develop Board" }
           ],
