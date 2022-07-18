@@ -1,0 +1,8 @@
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\bin\Release\Uploader.exe.config
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\bin\Release\Uploader.exe
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\bin\Release\Uploader.pdb
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\obj\Release\Uploader.csproj.AssemblyReference.cache
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\obj\Release\Uploader.csproj.SuggestedBindingRedirects.cache
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\obj\Release\Uploader.csproj.CoreCompileInputs.cache
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\obj\Release\Uploader.exe
+C:\Users\Henry\Source\Repos\W2-Develop-Board-For-Arduino\Romload\Romload\obj\Release\Uploader.pdb
