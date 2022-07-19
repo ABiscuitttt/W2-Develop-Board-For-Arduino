@@ -21,7 +21,8 @@ namespace Uploader
                     "Usage:\tUploader <fullpath> [options]\n" +
                     "\t\t-v\t--visible\t显示详细输入输出\n" +
                     "\t\t  \t--noreset\t寻找到W2开发板之后，不再次等待板重置，直接进入上载过程\n" +
-                    "\t\t-h\t--help\t帮助菜单\n";
+                    "\t\t-h\t--help\t帮助菜单\n" +
+                    "\t\t-r\t--run\t在上传之后立即运行程序\n";
                 Console.WriteLine(help);
                 return;
             }
@@ -135,10 +136,20 @@ namespace Uploader
 
             Console.WriteLine($"Load {codes.Length} bytes code to 10000000");
             MemoryWriteWord(serialPort, "1f800004", "0");
+
+            if ((args.Contains("-r")) | (args.Contains("--run")))
+            {
+                Console.WriteLine("Jumping the code");
+                serialPort.Write("3");
+                DelayForResponse(serialPort, "Address in hex> ", 1, vis);
+                serialPort.Write("10000000\n");
+            }
+
             Console.WriteLine("Serial port closed \nSystem resources disposed");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("All Done!");
             Console.ForegroundColor = ConsoleColor.White;
+
             serialPort.Close();
             serialPort.Dispose();
         }

@@ -2,3 +2,4 @@
 *.opendb
 *.vsidx
 *.suo
+.suo
