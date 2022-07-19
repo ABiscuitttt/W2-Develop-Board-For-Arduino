@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>C:\Users\Henry\AppData\Local\Temp\arduino-sketch-3ED7548A52EBFE6AC280D5064AAE7794/MyFirstSketch.ino.ld.bin --noreset</StartArguments>
+    <StartArguments>C:\Users\Henry\AppData\Local\Temp\arduino-sketch-3ED7548A52EBFE6AC280D5064AAE7794/MyFirstSketch.ino.ld.bin --noreset -r</StartArguments>
   </PropertyGroup>
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>

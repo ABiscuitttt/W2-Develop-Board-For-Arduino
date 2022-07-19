@@ -74,6 +74,28 @@
               "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2"
             }
           ]
+        },
+        {
+          "name": "W2 Develop Board",
+          "architecture": "MIPS",
+          "version": "1.0.3",
+          "category": "Contributed",
+          "help": {
+            "online": "http://camelmicro.com/"
+          },
+          "url": "http://121.37.143.186:8080/w2-1.0.3.zip",
+          "archiveFileName": "W2-1.0.3.zip",
+          "size": "100357",
+          "boards": [
+            { "name": "W2 Develop Board" }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "W2",
+              "name": "mips-compiler",
+              "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2"
+            }
+          ]
         }
       ],
 
