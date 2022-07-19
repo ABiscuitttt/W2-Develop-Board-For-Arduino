@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management;
+using System.Threading;
 
 namespace Uploader
 {
@@ -19,7 +20,7 @@ namespace Uploader
                     "Please run this tools with arguments\n" +
                     "Usage:\tUploader <fullpath> [options]\n" +
                     "\t\t-v\t--visible\t显示详细输入输出\n" +
-                    "\t\t  \t--noreset\t不等待板重置，直接进入上载过程\n" +
+                    "\t\t  \t--noreset\t寻找到W2开发板之后，不再次等待板重置，直接进入上载过程\n" +
                     "\t\t-h\t--help\t帮助菜单\n";
                 Console.WriteLine(help);
                 return;
@@ -36,14 +37,57 @@ namespace Uploader
             }
 
 
-
-            SerialPort serialPort = SearchPort();
+            SerialPort serialPort=null;
+            for (int i = 0; i < 5; i++)
+            {
+                string order;
+                switch (i)
+                {
+                    case 0: order = "st";
+                        break;
+                    case 1: order = "nd";
+                        break;
+                    case 2: order = "rd";
+                        break;
+                    default:order = "th";
+                        break;
+                }
+                Console.WriteLine($"\nThe {i + 1}{order} time to find the serial port");
+                serialPort = SearchPort();
+                if (serialPort!=null)
+                {
+                    Console.WriteLine("Sucess");
+                    break;
+                }
+                else
+                {
+                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.WriteLine("Faild to find the board:\n\tCheck if the board is reset or connected");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    if (i<4)
+                    {
+                        Console.WriteLine("Wait 3 seconds to search next time......");
+                        Thread.Sleep(3000);
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("Faild to find the board");
+                    }
+                }
+            }
+            if (serialPort==null)
+            {
+                Exception myException = new Exception("Upload faild");
+                throw myException;
+            }
             serialPort.Open();
             serialPort.ReadExisting();
 
             #region 等待重置开发板
             if (!(args.Contains("--noreset")))
             {
+                serialPort.ReadExisting();
                 Console.WriteLine("Wait For Reset the Board.......");
                 StringBuilder stringBuilder = new StringBuilder();
                 while (true)
@@ -97,7 +141,6 @@ namespace Uploader
             Console.ForegroundColor = ConsoleColor.White;
             serialPort.Close();
             serialPort.Dispose();
-            Console.ReadKey();
         }
         static void MemoryWriteWord(SerialPort serialPort,string address,string value)
         {
@@ -141,6 +184,7 @@ namespace Uploader
         }
         public static SerialPort SearchPort()
         {
+            StringBuilder occupied = new StringBuilder("Port ");
             SerialPort serialPort = new SerialPort
             {
                 BaudRate = 9600,
@@ -149,7 +193,7 @@ namespace Uploader
                 StopBits = StopBits.One,
                 ReadBufferSize = 8192
             };
-            foreach (var item in SerialPort.GetPortNames())
+            foreach (string item in SerialPort.GetPortNames())
             {
                 serialPort.PortName=item;
                 try
@@ -157,14 +201,32 @@ namespace Uploader
                     serialPort.Open();
                     serialPort.Write("\n");
                 }
-                finally{}
-                if(DelayForResponse(serialPort, "> v1.11 > ", 1, false))
+                catch
                 {
-                    serialPort.Close();
-                    return serialPort;
+                    serialPort = null;
+                    occupied.Append(item + " ");
+                }
+                finally{}
+                if (serialPort!=null)
+                {
+                    if (DelayForResponse(serialPort, "> v1.11 > ", 1, false))
+                    {
+                        serialPort.Close();
+                        return serialPort;
+                    }
                 }
             }
-            serialPort.Close();
+            if (serialPort != null)
+            {
+                serialPort.Close();
+            }
+            else
+            {
+                occupied.Append("occupied");
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine(occupied);
+                Console.ResetColor();
+            }
             return null;
         }
     }
