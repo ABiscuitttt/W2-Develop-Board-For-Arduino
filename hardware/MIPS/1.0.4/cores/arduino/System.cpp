@@ -36,7 +36,7 @@ inline void MemoryWrite32(int address, unsigned long value)
 
 inline void MemoryWrite(int address, unsigned long value)
 {
-	(*(volatile unsigned long*))(address) = value;
+	(*(volatile unsigned long*)(address)) = value;
 }
 
 inline void MemoryOr8(int address, unsigned char value)
@@ -81,7 +81,7 @@ inline void MemoryAnd(int address, unsigned long value)
 
 inline unsigned long GetSysClock()
 {
-	char systemClcok = (((*(unsigned long*)(0x1F800702)) >> 12) & (0x3));
+	char systemClock = (((*(unsigned long*)(0x1F800702)) >> 12) & (0x3));
 	return 6000000 << systemClock;
 }
 
@@ -103,7 +103,7 @@ inline void FlashWrite(int address, int data)
 
 inline void FlashErase(int address)
 {
-	((void (*)(int, int))0x294)(address);
+	((void (*)(int))0x294)(address);
 }
 
 inline void JumpTo(int address)
