@@ -1,24 +1,42 @@
 # W2-Develop-Board-For-Arduino
-将W2 开发板适配至Arduino IDE或Arduino CLI  
-## 0 适配所需文件
-### 硬件定义文件
-为使IDE能够对用户的各种操作进行不同的反应，  
-Arduino需要一些参数和固定的“recipe”来对不同的硬件进行不同的编译、链接、生成二进制文件等操作  
+此项目目的在于将W2 开发板适配至Arduino IDE或Arduino CLI
+
+## #0 适配所需文件
+### 硬件定义
+　　为使IDE能够对用户的各种操作进行不同的反应，例如编译、上传等  ，Arduino需要一些参数和固定的“recipe”来对不同的硬件进行不同的编译、链接、生成二进制文件等操作，这些recipe，在用户选择编译或上传之后，自动执行。  
+
+　　这些recipe是存储在每个不同的开发板的硬件定义中的，因此Arduino对于某一个硬件需要最基本的两个文件进行支持，即：  
+- ***board.txt***  
+- ***platform.txt***  
+
+　　这两个文件中均采用了“key=value”键值对的定义方式，如W2.name=W2则标识了开发板的名称ID，有了这样的键值对，我们就可以在执行各项动作的时候，使用被花括号包裹的，类似于这样的{W2.name}的属性，这个整体，在使用的时候就会自动替换成字符串“W2”，除一些自己定义的属性以外，有很多IDE提供的，可以直接使用的自动属性，例如{build_path}就会在编译过程中被替换为编译工程的目录  
+
+下面对两个文件各自的功能进行解释  
   
-因此Arduino对于某一个硬件需要最基本的两个文件进行支持，即：  
-**board.txt**  
-**platform.txt**  
-文件中均采用了“key=value”键值对的定义方式  
-下面对两个文件进行解释  
+***platform.txt：***  
+　　该文档表明了在IDE进行各种操作的时候，所需要的参数 ：例如“recipe.c.o.pattern”则表明了IDE在编译c文档到目标文件的时候所进行的操作  
+　　实际上，platform如同一个流程图，详细的描述了从源文件到一个可以执行的二进制的过程：  
+<img src="http://124.71.173.197:8080/%E6%B5%81%E7%A8%8B.png" alt="流程" title="流程">
   
-platform.txt：  
-该文档表明了在IDE进行各种操作的时候，所需要的参数  
-例如“recipe.c.o.pattern”则表明了IDE在编译c文档到目标文件的时候所进行的操作  
+***　　编译参数详解：***  
+　　在编译过程中，为了方便，直接将待编译的源文件汇编到等待链接的目标文件（ELF格式），而并不生成预处理和汇编代码，在此期间，利用GCC进行编译的时候，会用到以下参数：  
   
-board.txt:  
+  -EL：生成小端序代码  
+  **-msoft-float**：不要使用浮点协处理器指令  
+  -march：指定架构
+  -std：指定语言标准
+  **-G**：优化数据存储
+  -c：编译但不链接
+  其中加粗部分为MIPS架构的专用指令
+  
+***board.txt:***  
 该文档表明了以下两点：  
 1）该开发板的详细详细，名称ID和架构，以及编译工具链等  
 2）在上述platform.txt在进行操作的时候，可能会用到的各种参数（有些参数是自定义的，有些参数的key和value是IDE自动生成的）  
+
+⚠注意：  
+1）在编译时，若想加入汇编文件，文件扩展名为大写S
+2）C和C++混合编译，需要对C的函数加上 extern "C"
 
 ### 交叉编译工具链
 
@@ -29,7 +47,8 @@ Arduino的官方开发板板载芯片大多采用的是avr架构，而许多第�
 而W2开发板所采用的，则是MIPS架构，虽然和avr，arm同属精简指令集，但是仍需要一套完全不同的交叉编译工具链  
 因此需要一套适用于MIPS的编译工具，此次适配采用的是MIPS公司提供的["GCC Bare Metal Toolchain”](http://codescape.mips.com/components/toolchain/2017.10-07/index.html)  
 官网描述如下：
-“The Codescape GNU Tools for MIPS Bare Metal. This is a software engineer's cross-development system for MIPS processors, intended for statically linked embedded applications running on bare metal CPUs or light-weight operating systems.”  
+> “The Codescape GNU Tools for MIPS Bare Metal. This is a software engineer's cross-development system for MIPS processors, intended for statically linked embedded applications running on bare metal CPUs or light-weight operating systems.”  
+
 此编译工具链存放在tools for compile文件夹下  
 
 ### 上传工具

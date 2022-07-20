@@ -12,11 +12,13 @@ preload.path={runtime.platform.path}/src/preload/
 #Flags During Compile
 compiler.c.flags=-EL -msoft-float -march=mips1 -std=gnu99 -G 0 -c
 
-compiler.cpp.flags=-EL -msoft-float -march=mips1 -G 0 -c
+compiler.cpp.flags=-EL -msoft-float -march=mips1 -G 0 -c -O3
 
 compiler.S.flags=-EL -msoft-float -o
 
 compiler.ar.flags=rcs
+
+compiler.ld.flags=-EL -eentry -s -N -Ttext 10000000 -Tdata 01000010 --stats --verbose
 
 ##################################################
 #——————————Compile Patterns——————————#
@@ -32,7 +34,7 @@ recipe.S.o.pattern={compiler.path}mips-mti-elf-as {compiler.S.flags} {object_fil
 
 ##Link Object Files
 recipe.hooks.linking.prelink.1.pattern={compiler.path}mips-mti-elf-gcc {compiler.c.flags} -o {build.path}/interrupt.o {runtime.platform.path}/src/interrupt.c
-recipe.c.combine.pattern={compiler.path}mips-mti-elf-ld -EL -eentry -s -N -Ttext 10000000 -Tdata 01000010 -M -o {build.path}/{build.project_name}.ld "{preload.path}entry4romload.o" "{preload.path}io.o" "{preload.path}isr.o" "{build.path}/interrupt.o" {object_files} "{build.path}/{archive_file}"
+recipe.c.combine.pattern={compiler.path}mips-mti-elf-ld {compiler.ld.flags}  -o {build.path}/{build.project_name}.ld "{preload.path}entry4romload.o" "{preload.path}io.o" "{preload.path}isr.o" "{build.path}/interrupt.o" {object_files} "{build.path}/{archive_file}"
 recipe.hooks.linking.postlink.1.pattern={runtime.platform.path}/flashtool/flashconvert.exe -l {build.path}/{build.project_name}.ld
 
 ##Generate Archive file
