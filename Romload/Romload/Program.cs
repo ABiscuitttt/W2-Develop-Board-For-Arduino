@@ -118,7 +118,7 @@ namespace Uploader
             MemoryWriteWord(serialPort, "10300000", "A5");
             Console.WriteLine("Do Some previous action before unload");
             MemoryWriteWord(serialPort, "1f800004", "40");
-            Console.WriteLine(args[0]);
+            Console.WriteLine(Path.GetFileName(args[0])+" is waiting to be uploaded");
             FileStream fileStream = new FileStream(args[0], FileMode.Open, FileAccess.Read);
             byte[] codes=new byte[fileStream.Length];
             fileStream.Read(codes, 0, (int)fileStream.Length);
