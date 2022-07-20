@@ -1,10 +1,10 @@
 #include "Registers.h"
 
-void SetBaudRate(unsigned int buadRate)
+void SetBaudRate(unsigned long buadRate)
 {
 	char systemClcok = (((*(unsigned long*)(0x1F800702)) >> 12) & (0x3));
-	unsigned int tmp = (6000000 << systemClcok) / buadRate;
-	RegWrite(U0_BRP_REG,tmp << 1);
+	unsigned long tmp = (12000000 << systemClcok) / buadRate;
+	RegWrite(U0_BRP_REG,tmp);
 }
 
 void Putch(char ch)
