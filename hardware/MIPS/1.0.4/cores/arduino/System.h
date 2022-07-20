@@ -1,28 +1,29 @@
+#define MemoryRead8(address)             (*(volatile unsigned char*)(address))
+#define MemoryRead16(address)            (*(volatile unsigned short*)(address))
+#define MemoryRead32(address)            (*(volatile unsigned long*)(address))
+#define MemoryRead(address)              (*(volatile unsigned long*)(address))
+#define MemoryWrite8(address,value)      (*(volatile unsigned char*)(address))=(value)
+#define MemoryWrite16(address,value)     (*(volatile unsigned short*)(address))=(value)
+#define MemoryWrite32(address,value)     (*(volatile unsigned long*)(address))=(value)
+#define MemoryWrite(address,value)       MemoryWrite32(address,value)
 
-unsigned char MemoryRead8(int address);
-unsigned short MemoryRead16(int address);
-unsigned long MemoryRead32(int address);
-unsigned long MemoryRead(int address);
+#define MemoryOr8(address,value)         (*(volatile unsigned char*)(address)|=(value))
+#define MemoryOr16(address,value)        (*(volatile unsigned short*)(address)|=(value))
+#define MemoryOr32(address,value)        (*(volatile unsigned long*)(address)|=(value))
+#define MemoryOr(address,value)          MemoryOr32(address,value)
 
-void MemoryWrite8(int address, unsigned char value);
-void MemoryWrite16(int address, unsigned short value);
-void MemoryWrite32(int address, unsigned long value);
-void MemoryWrite(int address, unsigned long value);
+#define MemoryAnd8(address,value)        (*(volatile unsigned char*)(address)&=(value))
+#define MemoryAnd16(address,value)       (*(volatile unsigned short*)(address)&=(value))
+#define MemoryAnd32(address,value)       (*(volatile unsigned long*)(address)&=(value))
+#define MemoryAnd(address,value)         MemoryAnd32(address,value)
 
-void MemoryOr8(int address, unsigned char value);
-void MemoryOr16(int address, unsigned short value);
-void MemoryOr32(int address, unsigned long value);
-void MemoryOr(int address, unsigned long value);
 
-void MemoryAnd8(int address, unsigned char value);
-void MemoryAnd16(int address, unsigned short value);
-void MemoryAnd32(int address, unsigned long value);
-void MemoryAnd(int address, unsigned long value);
+#define GetSysClock()                    (6000000 << (((*(unsigned long*)(0x1F800702)) >> 12) & (0x3)))
+#define GetSysClockStatus()              (((*(unsigned long*)(0x1F800702)) >> 12) & (0x3))
+#define SetSysClockStatus(sysClk)        (*(unsigned long*)(0x1F800702))=(((*(unsigned long*)(0x1F800702)) & (~(3 << 12))) | (sysClk << 12))
 
-unsigned long GetSysClock();
-unsigned char GetSysClockStatus();
-void SetSysClockStatus(char sysClk);
+#define FlashWrite(address, data)        ((void (*)(int, int))0x260)(data, address)
 
-void FlashWrite(int address, int data);
-void FlashErase(int address);
-void JumpTo(int address);
+#define FlashErase(address)              ((void (*)(int))0x294)(address)
+
+#define JumpTo(address)                  ((void (*)())address)()
