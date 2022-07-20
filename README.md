@@ -89,3 +89,38 @@ void attachInterrupt(IrFuncPtr p);
 将自定义的中断函数传入该函数中，在发生中断时，将执行该部分的代码。  
 此外，也可以直接定义一个名为`void user_interrupt()`的函数，如果定义了该函数，则不需要使用`attachInterrupt()`函数。  
 ### 串口库
+　　串口库提供了以下函数  
+  ```cpp
+void SetBaudRate(unsigned long buadRate);
+
+void Putch(char ch);
+void Puts(char const* str);
+
+char* itoa(int num, char* str, int radix);
+int atoi(const char* str);
+
+char ReadChar();
+```  
+`void SetBaudRate(unsigned long buadRate)`:  
+可以根据当前系统时钟自动将计算好的数值写入串口的控制寄存器，函数运行完波特率将立即改变。  
+  
+`void Putch(char ch)`和`void Puts(char const* str)`:  
+输出字符和字符串  
+  
+`char* itoa(int num, char* str, int radix)`和`int atoi(const char* str)`  
+可以将int类型转换为radix进制的字符串，或者将十进制字符串转换为int类型  
+  
+`char ReadChar()`可以从串口读取一个字符  
+串口库提供的所有函数均为UART0，目的是为了和计算机交换数据。  
+### 寄存器库
+　　寄存器库提供了如下函数  
+  ```cpp
+void RegBitWrite(unsigned long reg, char pos, char value);
+void RegWrite(unsigned long reg, unsigned long value);
+
+unsigned long RegRead(unsigned long reg);
+char RegBitRead(unsigned long reg, unsigned long pos);
+```
+同时寄存器库定义了开发板上所有外设寄存器的地址  
+  
+## 4 编译流程细节
