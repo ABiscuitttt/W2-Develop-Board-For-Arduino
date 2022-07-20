@@ -60,11 +60,11 @@
 　　在开发板端口未被占用，且处于菜单时，上传工具可以自动寻找开发板的端口并自动上传，在IDE中，自动添加了参数，上传完成后将自动运行上传的程序，该参数是可选的。  
   
 这是正常运行的输出：  
-<img src="http://124.71.173.197:8080/%E6%AD%A3%E5%B8%B8.png" width="100px" alt="正常" title="正常">  
+<img src="http://124.71.173.197:8080/%E6%AD%A3%E5%B8%B8.png" width="500px" alt="正常" title="正常">  
 当开发板未连接或未Reset导致不在菜单时：  
-<img src="http://124.71.173.197:8080/%E6%9C%AA%E9%87%8D%E7%BD%AE.png" width="100px" alt="未重置" title="重置">  
+<img src="http://124.71.173.197:8080/%E6%9C%AA%E9%87%8D%E7%BD%AE.png" width="500px" alt="未重置" title="重置">  
 当开发板的端口可能被占用的时候：  
-<img src="http://124.71.173.197:8080/%E5%8D%A0%E7%94%A8.png" width="100px" alt="占用" title="占用">  
+<img src="http://124.71.173.197:8080/%E5%8D%A0%E7%94%A8.png" width="500px" alt="占用" title="占用">  
 该工具也提供了一些上传时的选项和帮助菜单，使用--help或-h调出帮助。  
 
 ## 1 IDE的版本要求
