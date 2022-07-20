@@ -8,7 +8,7 @@ void GPIOInputOpen(char pin)
 
 void GPIOPinOutPut(char pin,char value)
 {
-	if (RegBitWrite(SYS_IOCTL_REG,pin)==0)
+	if (RegBitRead(SYS_IOCTL_REG,pin)==0)
 	{
 		Puts("This pin is not turned to enable");
 	}
