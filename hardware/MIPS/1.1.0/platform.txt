@@ -18,7 +18,7 @@ compiler.S.flags=-EL -msoft-float -o
 
 compiler.ar.flags=rcs
 
-compiler.ld.flags=-EL -eentry -s -N -Ttext 10000000 -Tdata 01000010 --stats --verbose
+compiler.ld.flags=-EL -eentry -s -N -Ttext 10000000 -Tdata 01000010
 
 ##################################################
 #——————————Compile Patterns——————————#
