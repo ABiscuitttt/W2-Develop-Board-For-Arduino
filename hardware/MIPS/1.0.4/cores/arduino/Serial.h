@@ -1,4 +1,4 @@
-void SetBaudRate(unsigned int buadRate);
+void SetBaudRate(unsigned long buadRate);
 
 void Putch(char ch);
 void Puts(char const* str);
