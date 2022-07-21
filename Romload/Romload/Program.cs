@@ -112,6 +112,17 @@ namespace Uploader
                 Console.WriteLine("Success");
                 Console.ForegroundColor = ConsoleColor.White;
             }
+            if (args.Contains("-k"))
+            {
+                Console.WriteLine("Set High Baud Rate");
+                serialPort.Write("1");
+                DelayForResponse(serialPort, "Address in hex>", 1, false);
+                serialPort.Write("1f800007" + "\n");
+                DelayForResponse(serialPort, "Value in hex>", 1, false);
+                serialPort.Write("68" + "\n");
+                Thread.Sleep(30);
+                serialPort.BaudRate = 115200;
+            }
             Console.WriteLine("Unlock the Flash");
             MemoryWriteWord(serialPort, "1F800B07", "A5");
             Console.WriteLine("Erasing the Flash");
@@ -137,6 +148,19 @@ namespace Uploader
             Console.WriteLine($"Load {codes.Length} bytes code to 10000000");
             MemoryWriteWord(serialPort, "1f800004", "0");
 
+            if (args.Contains("-k"))
+            {
+                Console.WriteLine("Reset Baud Rate");
+                serialPort.Write("1");
+                DelayForResponse(serialPort, "Address in hex>", 1, false);
+                serialPort.Write("1f800007" + "\n");
+                DelayForResponse(serialPort, "Value in hex>", 1, false);
+                serialPort.Write("00000000" + "\n");
+                Thread.Sleep(30);
+                serialPort.BaudRate = 9600;
+
+            }
+
             if ((args.Contains("-r")) | (args.Contains("--run")))
             {
                 Console.WriteLine("Jumping the code");
@@ -160,7 +184,7 @@ namespace Uploader
             serialPort.Write(address+"\n");
             DelayForResponse(serialPort, "Value in hex>", 1, false);
             serialPort.Write(value+"\n");
-            DelayForResponse(serialPort, "> v1.11 > ", 2, false);
+            DelayForResponse(serialPort, "> v1.11 > ", 1, false);
             return;
         }
         static bool DelayForResponse(SerialPort serialPort, string contain, int timeOut, bool visible)
