@@ -163,7 +163,7 @@
             {
               "host": "i686-mingw32",
               "archiveFileName": "mips-compiler.zip",
-              "url": "http://124.71.173.197:8080/mips-compiler.zip"
+              "url": "https://media.githubusercontent.com/media/ABiscuitttt/W2-Develop-Board-For-Arduino/main/tools-for-compile/mips-compiler.zip"
             }
           ]
         }
