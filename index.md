@@ -16,7 +16,7 @@
 ***platform.txt：***  
 　　该文档表明了在IDE进行各种操作的时候，所需要的参数 ：例如“recipe.c.o.pattern”则表明了IDE在编译c文档到目标文件的时候所进行的操作  
 　　实际上，platform如同一个流程图，详细的描述了从源文件到一个可以执行的二进制的过程：  
-<img src="http://124.71.173.197:8080/%E6%B5%81%E7%A8%8B.png" alt="流程" title="流程">
+<img src="流程.png" alt="流程" title="流程">
   
 　　***编译参数详解：***  
 　　在编译过程中，为了方便，直接将待编译的源文件汇编到等待链接的目标文件（ELF格式），而并不生成预处理和汇编代码，在此期间，利用GCC进行编译的时候，会用到以下参数：  
@@ -61,11 +61,11 @@
   
 
 这是正常运行的输出：  
-<img src="http://124.71.173.197:8080/%E6%AD%A3%E5%B8%B8.png" width="500px" alt="正常" title="正常">  
+<img src="正常.png" width="500px" alt="正常" title="正常">  
 当开发板未连接或未Reset导致不在菜单时：  
-<img src="http://124.71.173.197:8080/%E6%9C%AA%E9%87%8D%E7%BD%AE.png" width="500px" alt="未重置" title="重置">  
+<img src="未重置.png" width="500px" alt="未重置" title="重置">  
 当开发板的端口可能被占用的时候：  
-<img src="http://124.71.173.197:8080/%E5%8D%A0%E7%94%A8.png" width="500px" alt="占用" title="占用">  
+<img src="占用.png" width="500px" alt="占用" title="占用">  
 该工具也提供了一些上传时的选项和帮助菜单，使用--help或-h调出帮助。  
 
 
