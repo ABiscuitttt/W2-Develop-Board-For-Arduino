@@ -152,12 +152,47 @@
               "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2"
             }
           ]
+        },
+        {
+          "name": "W2 Develop Board",
+          "architecture": "MIPS",
+          "version": "1.1.0-github",
+          "category": "Contributed",
+          "help": {
+            "online": "http://camelmicro.com/"
+          },
+          "url": "https://github.com/ABiscuitttt/W2-Develop-Board-For-Arduino/raw/main/Hardware-archive-files/w2-1.1.0.zip",
+          "archiveFileName": "W2-1.1.0.zip",
+          "size": "101712",
+          "boards": [
+            {
+              "name": "W2 Develop Board"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "W2",
+              "name": "mips-compiler-github",
+              "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2"
+            }
+          ]
         }
       ],
 
       "tools": [
         {
           "name": "mips-compiler",
+          "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2",
+          "systems": [
+            {
+              "host": "i686-mingw32",
+              "archiveFileName": "mips-compiler.zip",
+              "url": "http://124.71.173.197:8080/mips-compiler.zip"
+            }
+          ]
+        },
+        {
+          "name": "mips-compiler-github",
           "version": "GNU-Tools-2015.01-7-for-MIPS-MTI-Bare-Metal-4.9.2",
           "systems": [
             {
